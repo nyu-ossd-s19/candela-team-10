@@ -17,7 +17,7 @@ For extension issues, please use the issue tracker.
 # Software Requirements
 This extension requires Firefox 48 or above.
 
-## Simple Installation Instuctions
+# Simple Installation Instuctions
 1. Download the ZIP of this repository [here](https://github.com/nyu-ossd-s19/candela-team-10/archive/master.zip).
 2. Extract the archive, and note the location.
 3. Go to <a href="about:debugging" target="_blank">about:debugging in a new window</a>.
