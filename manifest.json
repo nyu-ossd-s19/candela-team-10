@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Candela",
+    "version": "1.0",
+
+    "description": "A light filter just for your Firefox browser.",
+    "homepage_url": "https://github.com/nyu-ossd-s19/candela-team-10",
+    "icons":{
+        "48": "images/icon.png"
+    },
+
+    "browser_action": {
+        "default_icon": "images/button.png",
+        "default_title":  "Candela",
+        "default_popup": ""
+    }
+}
