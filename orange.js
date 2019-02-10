@@ -44,26 +44,40 @@ function append() {
 // Shifts 6000K white to near 2700K white
 function backgroundShift() {
     var color = $("html").css("background-color");
+    var unset = false;
+    console.log(color);
+
+    if (color === "rgba(0, 0, 0, 0)") {
+        // Undeclared or was set to black with 0 alpha
+        unset = true;
+    }
+
     // String cleaning for array parsing
     color = color.replace(/\s+/g, '');
-    color = color.replace('rgba(', '');
+    color = color.replace('rgb', '');
     color = color.replace(')', '');
+    color = color.replace('a', '');
+    color = color.replace('(', '');
     let array = color.split(",");
     console.log(array);
     console.log($('html').color);
     
     // For cases when background was not set
-    for(let i = 0; i < 3; i++ ) {
-        if (array[i] < 1) {
-            array[i] = 255;
+    if (unset) {
+        for(let i = 0; i < 3; i++ ) {
+            if (array[i] < 1) {
+                array[i] = 255;
+            }
         }
     }
     console.log(array);
     array[1] = Math.floor(array[1]*0.72);
     array[2] = Math.floor(array[2]*0.23);
     console.log(array);
+
+    // Convert values back to hex values
+    // to pass back into CSS
     let hexString = "#";
-    // Deal with pages with NONSET backgrounds
     for(let i = 0; i < 3; i++ ) {
         hexPart = array[i].toString(16)
         if (hexPart.length % 2) {
