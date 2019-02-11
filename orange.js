@@ -1,17 +1,3 @@
-
-function loadJquery(callback) {
-    var script = document.createElement("script")
-    script.type = "text/javascript";
-    script.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js";
-    document.getElementsByTagName("head")[0].appendChild(script);
-
-    script.onload = function () {
-        console.log('jquery loaded');
-        callback();
-    };
-}
-
-
 // Append HTML and CSS via Jquery for element wide filtering
 function append() {
     var wrapper = document.createElement("div");
@@ -29,10 +15,13 @@ function append() {
     </svg>\
 ';
     document.body.appendChild(wrapper);
-    console.log("appended");
-    $("html").css("filter", "url(#orange)")
-    $("html").css("backdrop-filter", "url(#orange)")
-    console.log("js added");
+    console.log("appended html");
+    //$("html").css("filter", "url(#orange)")
+    //$("html").css("backdrop-filter", "url(#orange)")
+    const CSS = "html { filter: url('#orange'); backdrop-filter: url('#orange')";
+    browser.tabs.insertCSS({code: CSS});
+    console.log("css added");
+    console.log("calling");
     backgroundShift();
     console.log("background shifted");
 }
@@ -40,6 +29,7 @@ function append() {
 // Shift background using jquery and css and some math.
 // Shifts 6000K white to near 2700K white
 function backgroundShift() {
+    console.log("called");
     var color = $("html").css("background-color");
     var unset = false;
     console.log(color);
@@ -90,5 +80,3 @@ function backgroundShift() {
 function load() {
     loadJquery(append);
 }
-
-browser.browserAction.onClicked.addListener(load);
